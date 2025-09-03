@@ -13,7 +13,12 @@ def ftp_makedirs_cwd(ftp: FTP, path: str, first_call: bool = True) -> None:
         ftp.cwd(path)
     except error_perm:
         ftp_makedirs_cwd(ftp, dirname(path), False)
-        ftp.mkd(path)
+        try:
+            ftp.mkd(path)
+        except error_perm as exc:
+            # ignore "directory already exists" errors
+            if not str(exc).startswith("550"):
+                raise
         if first_call:
             ftp.cwd(path)
 
