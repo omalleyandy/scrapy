@@ -1,0 +1,13 @@
+[project]
+name = "scrapy-starter"
+version = "0.1.0"
+description = "Robust Scrapy starter project"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "scrapy>=2.11",
+    "lxml>=4.9",
+]
+
+[tool.uv]
+dev-dependencies = ["pytest"]
